@@ -20,17 +20,9 @@ btnRegistrar.addEventListener("click", (e) => {
     let descripcion = inputDescripcion.value;
 
     if((solicitud === '' || area === '' || nombre === '' || telefono === '' || descripcion === '')){
-        alert.innerHTML = `
-        <div class="alert alert-danger" role="alert">
-        Por favor completa todo los campos
-</div>
-        `
+        alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
     }else{
         registrarAsistencia(solicitud, area, nombre, telefono,descripcion)
-        alert.innerHTML = `
-        <div class="alert alert-success" role="alert">
-  Asistencia registrada
-</div>
-        `
+        alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
     }
 })

@@ -50,6 +50,6 @@ export const registrarAsistencia = (solicitud, area, nombre, telefono, descripci
   }
 }
 
-export const obtenerClientes = (callback) => onSnapshot(collection(db,'asistencias'),callback)
-export const borrarCliente = (id) => deleteDoc(doc(db,'clientes',id));
+export const asistenciasBD = (callback) => onSnapshot(collection(db,'ticketAsistencia'),callback)
+export const borrarAsistencia = (id) => deleteDoc(doc(db,'ticketAsistencia',id));
 export const obtenerDatos = () => getDocs(collection(db, 'clientes'))
