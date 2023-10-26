@@ -13,7 +13,7 @@
 </head>
 
 <body class="d-flex" style="background: var(--bs-body-bg);">
-    <nav class="d-flex flex-column align-items-xl-center" style="background: #0084c9;width: 88px;height: 100vh;">
+    <nav class="d-flex flex-column align-items-xl-center position-fixed" style="background: #0084c9;width: 88px;height: 100vh;">
         <div data-bs-toggle="tooltip" data-bss-tooltip="" data-bs-placement="right" data-bss-disabled-mobile="true"
             data-bss-hover-animate="tada" style="background: #21252900;border-radius: 14px;margin: 10px;"
             title="Asistencias Pendiente"><a class="btn" role="button" href="pendientes.html"><svg
@@ -55,9 +55,11 @@
                 </svg></a></div>
     </nav>
     <section style="height: 100vh;background: #ffffff;width: 100%;">
-        <section class="shadow contact-clean" style="background: var(--bs-body-bg);height: 100vh;">
+        <section class=" contact-clean" style="background: var(--bs-body-bg);height: 100vh;">
             <form class="bg-light border rounded border-secondary shadow-lg" method="post"
                 style="background: rgb(248,248,249);">
+                <div id="alert">
+                  </div>
                 <h2 class="text-center">Registrar Asistencia</h2>
                 <div class="form-group mb-3"><input class="form-control" id="inputSolicitud" type="text" name="name"
                         placeholder="Inserte su solicitud" autocomplete="off"></div>
@@ -70,7 +72,7 @@
                 <div class="form-group mb-3"><textarea class="form-control" id="inputDescripcion" name="message"
                         placeholder="Descripcion del problema" autocomplete="off"></textarea></div>
                 <div class="form-group mb-3">
-                    <button class="btn btn-primary" id="btnRegistrar" style="width: 100%;">Registrar asistencia</button>
+                    <button class="btn btn-primary" id="btnRegistrar" style="width: 100%;">Generar Ticket de Asistencia</button>
                     </div>
                 <div class="form-group mb-3">
                     <p class="text-center text-info" style="font-size: 12px;">Copyright © 2023 AlanDevPy. All Rights

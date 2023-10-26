@@ -20,15 +20,30 @@
 //   const analytics = getAnalytics(app);
 const db = getFirestore();
 
-export const registrarAsistencia = (titulo, area, nombre, telefono, descripcion) => {
+export const registrarAsistencia = (solicitud, area, nombre, telefono, descripcion) => {
   try {
-    addDoc(collection(db,"clientes"),{
-      titulo,
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false, // Usar formato de 24 horas
+    };
+    let fecha = new Date().toLocaleString("es-ES", options);
+
+    addDoc(collection(db,"ticketAsistencia"),{
+      solicitud,
       area,
       nombre,
       telefono,
-      descripcion
+      descripcion,
+      fecha,
     });
+
+    console.log("Asistencia Registrada");
   }
   catch {
     console.error('Error al registrar asistencia', error)
