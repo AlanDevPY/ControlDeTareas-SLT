@@ -7,9 +7,6 @@ import {
 
 let btnRegistrar = document.getElementById('btnRegistrar')
 let inputSolicitud = document.getElementById('inputSolicitud');
-let inputArea = document.getElementById('inputArea')
-let inputNombre = document.getElementById('inputNombre')
-let inputTelefono = document.getElementById('inputTelefono')
 let inputDescripcion = document.getElementById('inputDescripcion')
 let alert = document.getElementById("alert")
 let operadora = 595
@@ -23,7 +20,7 @@ let operadora = 595
 
 window.addEventListener('DOMContentLoaded', async () => {
     
-  let inputSelect = document.getElementById('inputSelect')
+  let inputSelectArea = document.getElementById('inputSelectArea')
 
   areaDB((querySnapshot) => {
       let option = ''
@@ -34,7 +31,6 @@ window.addEventListener('DOMContentLoaded', async () => {
           areas.push({...area, id: doc.id});
       });
 
-      console.log(areas);
 
 
       areas.forEach((area) =>{
@@ -44,7 +40,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       })
 
 
-      inputSelect.innerHTML = option;
+      inputSelectArea.innerHTML = option;
   })
 })
 
@@ -62,7 +58,6 @@ window.addEventListener('DOMContentLoaded', async () => {
           clientes.push({...cliente, id: doc.id});
       });
 
-      console.log(clientes);
 
 
       clientes.forEach((cliente) =>{
@@ -77,15 +72,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 
+
 btnRegistrar.addEventListener("click", (e) => {
     e.preventDefault()
     let solicitud = inputSolicitud.value;
-    let area = inputArea.value;
-    let nombre = inputNombre.value;
-    let telefono = inputTelefono.value;
     let descripcion = inputDescripcion.value;
+    let inputSelectArea = document.getElementById('inputSelectArea')
+    let area = inputSelectArea.value
+    let inputSelectCliente = document.getElementById('inputSelectCliente')
+    let nombre = inputSelectCliente.options[inputSelectCliente.selectedIndex].text;
+    let telefono = inputSelectCliente.value
 
-    if((solicitud === '' || area === '' || nombre === '' || descripcion === '')){
+    if((solicitud === '' || descripcion === '')){
         alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
     }else{
         function generarCadenaAleatoria() {
@@ -142,4 +140,6 @@ btnRegistrar.addEventListener("click", (e) => {
           },
         });
     }
+    inputDescripcion.value = ''
+    inputSolicitud.value = ''
 })
