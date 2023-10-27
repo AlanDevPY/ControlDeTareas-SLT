@@ -15,7 +15,7 @@ import {
             asistencias.push({...asistencia, id: asistencia.id});
         });
 
-        // asistencias.sort((a, b)  => b.time.localeCompare(a.time));
+        asistencias.sort((a, b)  => a.fecha.localeCompare(b.fecha));
 
 
         asistencias.forEach((asistencia) =>{
@@ -23,7 +23,7 @@ import {
             <div class="col">
             <div class="card">
                 <div class="card-body p-4">
-                    <p class="text-primary card-text mb-0">${asistencia.fecha} | Ticket N° #31</p>
+                    <p class="text-primary card-text mb-0">${asistencia.fecha}</p>
                     <h4 class="card-title">Impresora Richo 301</h4>
                     <p class="card-text">${asistencia.descripcion}</p>
                     <div class="d-flex align-items-xl-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 30px;margin-right: 20px;">
