@@ -53,6 +53,20 @@ export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, de
   }
 }
 
+export const registrarCliente = (nombre, telefono) => {
+  try {
+    addDoc(collection(db,"cliente"),{
+      nombre,
+      telefono
+    });
+
+    console.log("Asistencia Registrada");
+  }
+  catch {
+    console.error('Error al registrar asistencia', error)
+  }
+}
+
 export const asistenciasBD = (callback) => onSnapshot(collection(db,'ticketAsistencia'),callback)
 export const borrarAsistencia = (id) => deleteDoc(doc(db,'ticketAsistencia',id));
 export const obtenerDatos = () => getDocs(collection(db, 'clientes'))
