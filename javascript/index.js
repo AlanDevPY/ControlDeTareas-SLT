@@ -1,27 +1,89 @@
 import {
-  asistenciasBD,
     registrarAsistencia,
+    areaDB,
+    clientesDB
   } from "./firebase.js";
 
 
 let btnRegistrar = document.getElementById('btnRegistrar')
 let inputSolicitud = document.getElementById('inputSolicitud');
-let inputArea = document.getElementById('inputArea')
-let inputNombre = document.getElementById('inputNombre')
-let inputTelefono = document.getElementById('inputTelefono')
 let inputDescripcion = document.getElementById('inputDescripcion')
 let alert = document.getElementById("alert")
 let operadora = 595
 
+
+
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', async () => {
+    
+  let inputSelectArea = document.getElementById('inputSelectArea')
+
+  areaDB((querySnapshot) => {
+      let option = ''
+      let areas = []
+
+      querySnapshot.forEach((doc) => {
+          let area = doc.data()
+          areas.push({...area, id: doc.id});
+      });
+
+
+
+      areas.forEach((area) =>{
+          option +=`
+          <option value="${area.area}">${area.area}</option>
+          `
+      })
+
+
+      inputSelectArea.innerHTML = option;
+  })
+})
+
+
+window.addEventListener('DOMContentLoaded', async () => {
+    
+  let inputSelectCliente = document.getElementById('inputSelectCliente')
+
+  clientesDB((querySnapshot) => {
+      let tr = ''
+      let clientes = []
+
+      querySnapshot.forEach((doc) => {
+          let cliente = doc.data()
+          clientes.push({...cliente, id: doc.id});
+      });
+
+
+
+      clientes.forEach((cliente) =>{
+          tr +=`
+          <option value="${cliente.telefono}">${cliente.nombre}</option>
+          `
+      })
+
+
+      inputSelectCliente.innerHTML = tr;
+  })
+})
+
+
+
 btnRegistrar.addEventListener("click", (e) => {
     e.preventDefault()
     let solicitud = inputSolicitud.value;
-    let area = inputArea.value;
-    let nombre = inputNombre.value;
-    let telefono = inputTelefono.value;
     let descripcion = inputDescripcion.value;
+    let inputSelectArea = document.getElementById('inputSelectArea')
+    let area = inputSelectArea.value
+    let inputSelectCliente = document.getElementById('inputSelectCliente')
+    let nombre = inputSelectCliente.options[inputSelectCliente.selectedIndex].text;
+    let telefono = inputSelectCliente.value
 
-    if((solicitud === '' || area === '' || nombre === '' || descripcion === '')){
+    if((solicitud === '' || descripcion === '')){
         alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
     }else{
         function generarCadenaAleatoria() {
@@ -77,10 +139,7 @@ btnRegistrar.addEventListener("click", (e) => {
             console.error("Error en la solicitud: " + textStatus, errorThrown);
           },
         });
-
-
-
     }
-
-
+    inputDescripcion.value = ''
+    inputSolicitud.value = ''
 })

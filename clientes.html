@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/css/animate.min.css">
     <link rel="stylesheet" href="assets/css/Articles-Cards-images.css">
     <link rel="stylesheet" href="assets/css/Contact-Form-by-Moorcam.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Basic-icons.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -32,23 +33,84 @@
                 </svg></a></div>
     </nav>
     <section style="height: 100vh;background: #ffffff;width: 100%;">
-        <section class="py-4 py-xl-5">
-            <div class="container h-100">
-                <div class="text-white bg-primary border rounded border-0 p-4 py-5">
-                    <div class="row h-100">
-                        <div class="col-md-10 col-xl-8 text-center d-flex d-sm-flex d-md-flex justify-content-center align-items-center mx-auto justify-content-md-start align-items-md-center justify-content-xl-center">
-                            <div>
-                                <h1 class="text-uppercase fw-bold text-white mb-3">¡Estamos en proceso de mejora! </h1>
-                                <p class="mb-4">Disculpa las molestias temporales. Mientras tanto, no dudes en contactarnos si necesitas ayuda o información. ¡Gracias por tu paciencia!</p>
+        <div class="d-flex justify-content-xl-center align-items-xl-center">
+            <section class="position-relative py-4 py-xl-5">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6 col-xl-4" style="width: 400px;">
+                            <div class="card mb-5">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h1 class="display-6" style="font-size: 20px;">Registrar Compañero</h1>
+                                    <form class="text-center" method="post">
+                                        <div class="mb-3"><input class="form-control" id="inputNombre" type="email" name="Nombre" placeholder="Nombre" autocomplete="off"></div>
+                                        <div class="mb-3"><input class="form-control" id="inputTelefono" type="text" name="Telefono" placeholder="Telefono" autocomplete="off"></div>
+                                        <div class="mb-3"><button class="btn btn-primary d-block w-100" id="btnRegistrarCliente" type="button">Registrar</button></div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+            <section class="position-relative py-4 py-xl-5">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6 col-xl-4" style="width: 400px;">
+                            <div class="card mb-5">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h1 class="display-6" style="font-size: 20px;">Registrar Area</h1>
+                                    <form class="text-center" method="post">
+                                        <div class="mb-3"></div>
+                                        <div class="mb-3"><input class="form-control" id="inputArea" type="text" name="area" placeholder="Area" autocomplete="off"></div>
+                                        <div class="mb-3"><button class="btn btn-primary d-block w-100" id="btnRegistrarArea" type="button">Registrar</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-xl-center">
+            <section style="margin: 20px;">
+                <div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 81.469px;">#</th>
+                                    <th>Nombre</th>
+                                    <th>Telefono</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tBodyCliente">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <section style="margin: 20px;">
+                <div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width: 81.469px;">#</th>
+                                    <th>Area</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tBodyArea">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
     </section>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script type="module" src="javascript/cliente.js"></script>
 </body>
 
 </html>

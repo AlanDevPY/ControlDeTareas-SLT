@@ -53,6 +53,37 @@ export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, de
   }
 }
 
+export const registrarCliente = (nombre, telefono) => {
+  try {
+    addDoc(collection(db,"cliente"),{
+      nombre,
+      telefono
+    });
+
+    console.log("Cliente Registrado");
+  }
+  catch {
+    console.error('Error al registrar cliente', error)
+  }
+}
+
+export const registrarArea = (area) => {
+  try {
+    addDoc(collection(db,"area"),{
+      area
+    });
+
+    console.log("Area Registrado");
+  }
+  catch {
+    console.error('Error al registrar Area', error)
+  }
+}
+
 export const asistenciasBD = (callback) => onSnapshot(collection(db,'ticketAsistencia'),callback)
+export const clientesDB = (callback) => onSnapshot(collection(db,'cliente'),callback)
+export const areaDB = (callback) => onSnapshot(collection(db,'area'),callback)
+
+
 export const borrarAsistencia = (id) => deleteDoc(doc(db,'ticketAsistencia',id));
-export const obtenerDatos = () => getDocs(collection(db, 'clientes'))
+// export const obtenerDatos = () => getDocs(collection(db, 'clientes'))
