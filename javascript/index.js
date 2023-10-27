@@ -1,6 +1,6 @@
 import {
-  asistenciasBD,
     registrarAsistencia,
+    areaDB
   } from "./firebase.js";
 
 
@@ -12,6 +12,42 @@ let inputTelefono = document.getElementById('inputTelefono')
 let inputDescripcion = document.getElementById('inputDescripcion')
 let alert = document.getElementById("alert")
 let operadora = 595
+
+
+
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', async () => {
+    
+  let inputSelect = document.getElementById('inputSelect')
+
+  areaDB((querySnapshot) => {
+      let tr = ''
+      let areas = []
+
+      querySnapshot.forEach((doc) => {
+          let area = doc.data()
+          areas.push({...area, id: doc.id});
+      });
+
+      console.log(areas);
+
+
+      areas.forEach((area) =>{
+          tr +=`
+          <option value="${area.area}">${area.area}</option>
+          `
+      })
+
+
+      inputSelect.innerHTML = tr;
+  })
+})
+
+
 
 btnRegistrar.addEventListener("click", (e) => {
     e.preventDefault()
@@ -77,10 +113,5 @@ btnRegistrar.addEventListener("click", (e) => {
             console.error("Error en la solicitud: " + textStatus, errorThrown);
           },
         });
-
-
-
     }
-
-
 })
