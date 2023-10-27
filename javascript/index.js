@@ -23,21 +23,43 @@ btnRegistrar.addEventListener("click", (e) => {
     if((solicitud === '' || area === '' || nombre === '' || descripcion === '')){
         alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
     }else{
-        registrarAsistencia(solicitud, area, nombre, telefono,descripcion)
+        function generarCadenaAleatoria() {
+            const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let cadena = '';
+          
+            // Genera 3 letras aleatorias
+            for (let i = 0; i < 3; i++) {
+              const letraAleatoria = letras.charAt(Math.floor(Math.random() * 26));
+              cadena += letraAleatoria;
+            }
+          
+            // Genera 2 números aleatorios
+            for (let i = 0; i < 2; i++) {
+              const numeroAleatorio = Math.floor(Math.random() * 10);
+              cadena += numeroAleatorio;
+            }
+          
+            return cadena;
+          }
+          
+          const ticket = generarCadenaAleatoria();
+          
+        registrarAsistencia(ticket,solicitud, area, nombre, telefono,descripcion)
         alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
-Tu ticket de asistencia técnica generado a nombre de ${nombre}
+Su ticket de asistencia fue generado a nombre de : 
+
+*${nombre}* numero de Ticker N°#*${ticket}*
 *Motivo* : ${solicitud}
 *Despcripcion del problema* : ${descripcion}
-
-El tecnico pasara en el area de *${area}*
+*Area* : ${area}
         `;
 
         var chat = {
           secret: "e513c41e6b43f77bc144d81ba7c39db3914a7c59",
           account: "1698239289e4da3b7fbbce2345d7772b0674a318d56539133983e61",
-          recipient:operadora+telefono,
+          recipient:595986862498,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
         }; 

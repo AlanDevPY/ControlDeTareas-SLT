@@ -23,8 +23,8 @@ import {
             <div class="col">
             <div class="card">
                 <div class="card-body p-4">
-                    <p class="text-primary card-text mb-0">${asistencia.fecha}</p>
-                    <h4 class="card-title">Impresora Richo 301</h4>
+                    <p class="text-primary card-text mb-0">${asistencia.fecha} | N° de Ticket #${asistencia.ticket}</p>
+                    <h4 class="card-title">${asistencia.solicitud}</h4>
                     <p class="card-text">${asistencia.descripcion}</p>
                     <div class="d-flex align-items-xl-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor" style="font-size: 30px;margin-right: 20px;">
                             <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->

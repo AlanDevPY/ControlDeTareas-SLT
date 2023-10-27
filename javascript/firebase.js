@@ -20,7 +20,7 @@
 //   const analytics = getAnalytics(app);
 const db = getFirestore();
 
-export const registrarAsistencia = (solicitud, area, nombre, telefono, descripcion) => {
+export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, descripcion) => {
   try {
 
     const options = {
@@ -34,6 +34,8 @@ export const registrarAsistencia = (solicitud, area, nombre, telefono, descripci
     };
     let fecha = new Date().toLocaleString("es-ES", options);
 
+    
+    
     addDoc(collection(db,"ticketAsistencia"),{
       solicitud,
       area,
@@ -41,6 +43,7 @@ export const registrarAsistencia = (solicitud, area, nombre, telefono, descripci
       telefono,
       descripcion,
       fecha,
+      ticket
     });
 
     console.log("Asistencia Registrada");
