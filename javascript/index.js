@@ -1,6 +1,7 @@
 import {
     registrarAsistencia,
-    areaDB
+    areaDB,
+    clientesDB
   } from "./firebase.js";
 
 
@@ -25,7 +26,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   let inputSelect = document.getElementById('inputSelect')
 
   areaDB((querySnapshot) => {
-      let tr = ''
+      let option = ''
       let areas = []
 
       querySnapshot.forEach((doc) => {
@@ -37,16 +38,43 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 
       areas.forEach((area) =>{
-          tr +=`
+          option +=`
           <option value="${area.area}">${area.area}</option>
           `
       })
 
 
-      inputSelect.innerHTML = tr;
+      inputSelect.innerHTML = option;
   })
 })
 
+
+window.addEventListener('DOMContentLoaded', async () => {
+    
+  let inputSelectCliente = document.getElementById('inputSelectCliente')
+
+  clientesDB((querySnapshot) => {
+      let tr = ''
+      let clientes = []
+
+      querySnapshot.forEach((doc) => {
+          let cliente = doc.data()
+          clientes.push({...cliente, id: doc.id});
+      });
+
+      console.log(clientes);
+
+
+      clientes.forEach((cliente) =>{
+          tr +=`
+          <option value="${cliente.telefono}">${cliente.nombre}</option>
+          `
+      })
+
+
+      inputSelectCliente.innerHTML = tr;
+  })
+})
 
 
 btnRegistrar.addEventListener("click", (e) => {
