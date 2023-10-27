@@ -17,7 +17,7 @@ import {
         });
 
 
-        asistencias.sort((a, b)  => a.fecha.localeCompare(b.fecha));
+        asistencias.sort((a, b)  => b.fecha.localeCompare(a.fecha));
 
 
         asistencias.forEach((asistencia) =>{
