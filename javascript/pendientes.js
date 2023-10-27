@@ -1,5 +1,6 @@
 import {
     asistenciasBD,
+    borrarAsistencia
   } from "./firebase.js";
 
   window.addEventListener('DOMContentLoaded', async () => {
@@ -12,8 +13,9 @@ import {
 
         querySnapshot.forEach((doc) => {
             let asistencia = doc.data()
-            asistencias.push({...asistencia, id: asistencia.id});
+            asistencias.push({...asistencia, id: doc.id});
         });
+
 
         asistencias.sort((a, b)  => a.fecha.localeCompare(b.fecha));
 
@@ -35,14 +37,23 @@ import {
                             <p class="text-muted mb-0">${asistencia.telefono}</p>
                             <p class="text-muted mb-0">${asistencia.area}</p>
                         </div>
-                    </div><button class="btn btn-secondary" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
+                    </div><button class="btn btn-secondary" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
                 </div>
             </div>
         </div>
             `
         })
 
+
         card.innerHTML = html;
 
+        const btnDelet = card.querySelectorAll(".btn");
+        // Agregar un evento de clic a cada botón de borrado
+        btnDelet.forEach((btn) => {
+            btn.addEventListener("click", (event) => {
+                // Llamar a la función deletTask con el ID de la tarea asociado al botón
+                borrarAsistencia(event.target.dataset.id);
+            });
+        });
     })
   })

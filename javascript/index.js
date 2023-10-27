@@ -1,4 +1,5 @@
 import {
+  asistenciasBD,
     registrarAsistencia,
   } from "./firebase.js";
 
@@ -48,9 +49,7 @@ btnRegistrar.addEventListener("click", (e) => {
         alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
-Su ticket de asistencia fue generado a nombre de : 
-
-*${nombre}* numero de Ticker N°#*${ticket}*
+*${nombre}* Su ticket de asistencia fue generado | Ticket N°#*${ticket}*✅
 *Motivo* : ${solicitud}
 *Despcripcion del problema* : ${descripcion}
 *Area* : ${area}
@@ -59,7 +58,7 @@ Su ticket de asistencia fue generado a nombre de :
         var chat = {
           secret: "e513c41e6b43f77bc144d81ba7c39db3914a7c59",
           account: "1698239289e4da3b7fbbce2345d7772b0674a318d56539133983e61",
-          recipient:595986862498,
+          recipient:operadora+telefono,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
         }; 
@@ -71,6 +70,7 @@ Su ticket de asistencia fue generado a nombre de :
           success: function (response) {
             // Maneja la respuesta del servidor aquí (puede requerir validación)
             console.log(response);
+            
           },
           error: function (xhr, textStatus, errorThrown) {
             // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
