@@ -37,12 +37,15 @@ import {
                             <p class="text-muted mb-0">${asistencia.telefono}</p>
                             <p class="text-muted mb-0">${asistencia.area}</p>
                         </div>
-                    </div><button class="btn btn-secondary" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
             `
         })
+
+        // <button class="btn btn-secondary" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
 
 
         card.innerHTML = html;
