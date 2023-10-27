@@ -42,8 +42,8 @@
                                 <div class="card-body d-flex flex-column align-items-center">
                                     <h1 class="display-6" style="font-size: 20px;">Registrar Compañero</h1>
                                     <form class="text-center" method="post">
-                                        <div class="mb-3"><input class="form-control" id="inputNombre" type="email" name="Nombre" placeholder="Nombre"></div>
-                                        <div class="mb-3"><input class="form-control" id="inputTelefono" type="text" name="Telefono" placeholder="Telefono"></div>
+                                        <div class="mb-3"><input class="form-control" id="inputNombre" type="email" name="Nombre" placeholder="Nombre" autocomplete="off"></div>
+                                        <div class="mb-3"><input class="form-control" id="inputTelefono" type="text" name="Telefono" placeholder="Telefono" autocomplete="off"></div>
                                         <div class="mb-3"><button class="btn btn-primary d-block w-100" id="btnRegistrarCliente" type="button">Registrar</button></div>
                                     </form>
                                 </div>
@@ -61,7 +61,7 @@
                                     <h1 class="display-6" style="font-size: 20px;">Registrar Area</h1>
                                     <form class="text-center" method="post">
                                         <div class="mb-3"></div>
-                                        <div class="mb-3"><input class="form-control" id="inputArea" type="text" name="area" placeholder="Area"></div>
+                                        <div class="mb-3"><input class="form-control" id="inputArea" type="text" name="area" placeholder="Area" autocomplete="off"></div>
                                         <div class="mb-3"><button class="btn btn-primary d-block w-100" id="btnRegistrarArea" type="button">Registrar</button></div>
                                     </form>
                                 </div>
@@ -80,21 +80,11 @@
                             <thead>
                                 <tr>
                                     <th style="width: 81.469px;">#</th>
-                                    <th>Nombre&nbsp;</th>
+                                    <th>Nombre</th>
                                     <th>Telefono</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Alan Romero</td>
-                                    <td>0986862498</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Alan Romero</td>
-                                    <td>0986862498</td>
-                                </tr>
+                            <tbody id="tBodyCliente">
                             </tbody>
                         </table>
                     </div>
@@ -110,11 +100,7 @@
                                     <th>Area</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Administracion</td>
-                                </tr>
+                            <tbody id="tBodyArea">
                             </tbody>
                         </table>
                     </div>
