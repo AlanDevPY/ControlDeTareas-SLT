@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
 
 
-
+      areas.sort((a, b) => a.area.localeCompare(b.area));
       areas.forEach((area) =>{
           option +=`
           <option value="${area.area}">${area.area}</option>
@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           clientes.push({...cliente, id: doc.id});
       });
 
-
+      clientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
       clientes.forEach((cliente) =>{
           tr +=`
