@@ -54,11 +54,13 @@ window.addEventListener('DOMContentLoaded', async () => {
         let tr = ''
         let clientes = []
 
+        
         querySnapshot.forEach((doc) => {
             let cliente = doc.data()
             clientes.push({...cliente, id: doc.id});
         });
-
+        
+        clientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
         clientes.forEach((cliente) =>{
             tr +=`
@@ -89,7 +91,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             areas.push({...area, id: doc.id});
         });
 
-
+        areas.sort((a, b) => a.area.localeCompare(b.area));
         areas.forEach((area) =>{
             tr +=`
             <tr>

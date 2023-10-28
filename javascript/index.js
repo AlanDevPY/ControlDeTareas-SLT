@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       });
 
 
-
+      areas.sort((a, b) => a.area.localeCompare(b.area));
       areas.forEach((area) =>{
           option +=`
           <option value="${area.area}">${area.area}</option>
@@ -58,7 +58,7 @@ window.addEventListener('DOMContentLoaded', async () => {
           clientes.push({...cliente, id: doc.id});
       });
 
-
+      clientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
 
       clientes.forEach((cliente) =>{
           tr +=`
@@ -111,7 +111,10 @@ btnRegistrar.addEventListener("click", (e) => {
         alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
-  ❗❗*${nombre}* Su ticket de asistencia fue generado | Ticket N°#*${ticket}*
+
+  TICKET DE ASISTENCIA GENERADO ❗❗ N°#*${ticket}
+
+*${nombre}* Su ticket de asistencia fue generado
 *Motivo* : ${solicitud}
 *Despcripcion del problema* : ${descripcion}
 *Area* : ${area}
