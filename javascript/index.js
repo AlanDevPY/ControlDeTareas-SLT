@@ -111,7 +111,7 @@ btnRegistrar.addEventListener("click", (e) => {
         alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
-*${nombre}* Su ticket de asistencia fue generado | Ticket N°#*${ticket}*❗❗
+  ❗❗*${nombre}* Su ticket de asistencia fue generado | Ticket N°#*${ticket}*
 *Motivo* : ${solicitud}
 *Despcripcion del problema* : ${descripcion}
 *Area* : ${area}
