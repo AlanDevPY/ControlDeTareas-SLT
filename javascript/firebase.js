@@ -86,4 +86,4 @@ export const areaDB = (callback) => onSnapshot(collection(db,'area'),callback)
 
 
 export const borrarAsistencia = (id) => deleteDoc(doc(db,'ticketAsistencia',id));
-// export const obtenerDatos = () => getDocs(collection(db, 'clientes'))
+// export const obtenerDatos = () => getDocs(collection(db, 'cliente'))
