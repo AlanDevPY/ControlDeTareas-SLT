@@ -9,6 +9,7 @@ let btnRegistrar = document.getElementById('btnRegistrar')
 let inputSolicitud = document.getElementById('inputSolicitud');
 let inputDescripcion = document.getElementById('inputDescripcion')
 let alert = document.getElementById("alert")
+let whatsapp = document.getElementById("whatsapp")
 let operadora = 595
 
 
@@ -108,7 +109,7 @@ btnRegistrar.addEventListener("click", (e) => {
           const ticket = generarCadenaAleatoria();
           
         registrarAsistencia(ticket,solicitud, area, nombre, telefono,descripcion)
-        alert.innerHTML = ` <div class="alert alert-success" role="alert">Asistencia registrada</div>`
+        alert.innerHTML = ` <div class="alert alert-success text-center" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
 
@@ -135,7 +136,7 @@ btnRegistrar.addEventListener("click", (e) => {
           success: function (response) {
             // Maneja la respuesta del servidor aquí (puede requerir validación)
             console.log(response);
-            
+            whatsapp.innerHTML = ` <div class="alert alert-success text-center" role="alert">Mensaje enviado</div>`
           },
           error: function (xhr, textStatus, errorThrown) {
             // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
