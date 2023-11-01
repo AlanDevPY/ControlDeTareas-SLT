@@ -1,6 +1,7 @@
 import {
     asistenciasBD,
     borrarAsistencia,
+    asistenciaTermianda
   } from "./firebase.js";
 
   window.addEventListener('DOMContentLoaded', async () => {
@@ -75,6 +76,8 @@ import {
 
 *Generado el dia* : ${ticket}  
         `;
+
+        asistenciaTermianda(ticket,solicitud,area,nombre,descripcion)
 
         var chat = {
           secret: "e513c41e6b43f77bc144d81ba7c39db3914a7c59",
