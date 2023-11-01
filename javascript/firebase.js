@@ -53,6 +53,38 @@ export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, de
   }
 }
 
+export const asistenciaTermianda = (ticket,solicitud, area, nombre, descripcion) => {
+  try {
+
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: false, // Usar formato de 24 horas
+    };
+    let fecha = new Date().toLocaleString("es-ES", options);
+
+    
+    
+    addDoc(collection(db,"asistenciaterminada"),{
+      solicitud,
+      area,
+      nombre,
+      descripcion,
+      fecha,
+      ticket
+    });
+
+    console.log("Asitencia Terminadado Registrado con exito");
+  }
+  catch {
+    console.error('Error al registrar asistencia', error)
+  }
+}
+
 export const registrarCliente = (nombre, telefono) => {
   try {
     addDoc(collection(db,"cliente"),{
@@ -81,6 +113,7 @@ export const registrarArea = (area) => {
 }
 
 export const asistenciasBD = (callback) => onSnapshot(collection(db,'ticketAsistencia'),callback)
+export const asistenciasTerminadoBD = (callback) => onSnapshot(collection(db,'asistenciaterminada'),callback)
 export const clientesDB = (callback) => onSnapshot(collection(db,'cliente'),callback)
 export const areaDB = (callback) => onSnapshot(collection(db,'area'),callback)
 
