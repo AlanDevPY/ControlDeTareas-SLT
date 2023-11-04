@@ -48,9 +48,9 @@ btnRegistrarArea.addEventListener('click', () =>{
 window.addEventListener('DOMContentLoaded', async () => {
     
     let tBodyCliente = document.getElementById('tBodyCliente')
-    let contador = 1
 
     clientesDB((querySnapshot) => {
+        
         let tr = ''
         let clientes = []
 
@@ -60,8 +60,9 @@ window.addEventListener('DOMContentLoaded', async () => {
             clientes.push({...cliente, id: doc.id});
         });
         
+        
         clientes.sort((a, b) => a.nombre.localeCompare(b.nombre));
-
+        let contador = 1
         clientes.forEach((cliente) =>{
             tr +=`
             <tr>
@@ -77,6 +78,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     })
   })
 
+//   MOSTRAR AREA
   window.addEventListener('DOMContentLoaded', async () => {
     
     let tBodyArea = document.getElementById('tBodyArea')
