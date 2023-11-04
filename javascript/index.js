@@ -85,7 +85,20 @@ btnRegistrar.addEventListener("click", (e) => {
     let telefono = inputSelectCliente.value
 
     if((solicitud === '' || descripcion === '')){
-        alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
+        // alert.innerHTML = `<div class="alert alert-danger" role="alert">Por favor completa todo los campos</div>`
+        Toastify({
+          text: "Favor de completar los datos",
+          duration: 2000,
+          destination: "https://github.com/apvarun/toastify-js",
+          newWindow: true,
+          // close: true,
+          gravity: "bottom", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "black",
+          }
+        }).showToast();
     }else{
         function generarCadenaAleatoria() {
             const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -107,9 +120,25 @@ btnRegistrar.addEventListener("click", (e) => {
           }
           
           const ticket = generarCadenaAleatoria();
+
+          Toastify({
+            text: "Asistencia Tecnica Registrado",
+            duration: 2000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            // close: true,
+            gravity: "bottom", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "black",
+            }
+          }).showToast();
+
+
           
         registrarAsistencia(ticket,solicitud, area, nombre, telefono,descripcion)
-        alert.innerHTML = ` <div class="alert alert-success text-center" role="alert">Asistencia registrada</div>`
+        // alert.innerHTML = ` <div class="alert alert-success text-center" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 
 
@@ -136,7 +165,19 @@ btnRegistrar.addEventListener("click", (e) => {
           success: function (response) {
             // Maneja la respuesta del servidor aquí (puede requerir validación)
             console.log(response);
-            whatsapp.innerHTML = ` <div class="alert alert-success text-center" role="alert">Mensaje enviado</div>`
+            Toastify({
+              text: "Whatsapp Enviado",
+              duration: 3000,
+              destination: "https://github.com/apvarun/toastify-js",
+              newWindow: true,
+              // close: true,
+              gravity: "bottom", // `top` or `bottom`
+              position: "right", // `left`, `center` or `right`
+              stopOnFocus: true, // Prevents dismissing of toast on hover
+              style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+              }
+            }).showToast();
           },
           error: function (xhr, textStatus, errorThrown) {
             // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
