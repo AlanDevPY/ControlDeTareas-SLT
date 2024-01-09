@@ -80,8 +80,8 @@ import {
         asistenciaTermianda(ticket,solicitud,area,nombre,descripcion)
 
         var chat = {
-          secret: "e513c41e6b43f77bc144d81ba7c39db3914a7c59",
-          account: "1698239289e4da3b7fbbce2345d7772b0674a318d56539133983e61",
+          secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
+          account: "17047957986c8349cc7260ae62e3b1396831a8398f659d1e96b6d04",
           recipient:operadora+telefono,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
