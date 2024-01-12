@@ -1,28 +1,28 @@
 import {
-    asistenciasBD,
-    borrarAsistencia,
-    asistenciaTermianda
-  } from "./firebase.js";
+  asistenciasBD,
+  borrarAsistencia,
+  asistenciaTermianda
+} from "./firebase.js";
 
-  window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async () => {
 
-    let card = document.getElementById('card')
+  let card = document.getElementById('card')
 
-    asistenciasBD((querySnapshot) => {
-        let html = ''
-        let asistencias = []
+  asistenciasBD((querySnapshot) => {
+    let html = ''
+    let asistencias = []
 
-        querySnapshot.forEach((doc) => {
-            let asistencia = doc.data()
-            asistencias.push({...asistencia, id: doc.id});
-        });
-
-
-        asistencias.sort((a, b)  => b.fecha.localeCompare(a.fecha));
+    querySnapshot.forEach((doc) => {
+      let asistencia = doc.data()
+      asistencias.push({ ...asistencia, id: doc.id });
+    });
 
 
-        asistencias.forEach((asistencia) =>{
-            html +=`
+    asistencias.sort((a, b) => b.fecha.localeCompare(a.fecha));
+
+
+    asistencias.forEach((asistencia) => {
+      html += `
             <div class="col">
             <div class="card">
                 <div class="card-body p-4">
@@ -39,54 +39,55 @@ import {
                             <p class="text-muted mb-0 area">${asistencia.area}</p>
                         </div>
                     </div>
-                    <button class="btn btn-secondary" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
+                    <button class="btn btn-success" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
+                    <button class="whatsapp btn btn-warning" type="button" style="width: 100%;margin-top: 20px;">Responder Ticket Mensaje</button>
                 </div>
             </div>
         </div>
             `
-        })
+    })
 
 
 
 
-        card.innerHTML = html;
+    card.innerHTML = html;
 
-        const btnDelet = card.querySelectorAll(".btn");
-        // Agregar un evento de clic a cada botón de borrado
-        btnDelet.forEach((btn) => {
-            btn.addEventListener("click", (event) => {
+    const btnDelet = card.querySelectorAll(".btn-success");
+    // Agregar un evento de clic a cada botón de borrado
+    btnDelet.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
 
-                // let cardID =(event.target.dataset.id)
-                let card = event.target.closest('.card')
-                let ticket = card.querySelector('.ticket').textContent
-                let solicitud = card.querySelector('.solicitud').textContent
-                let descripcion = card.querySelector('.descripcion').textContent
-                let nombre = card.querySelector('.nombre').textContent
-                let telefono = card.querySelector('.telefono').textContent
-                let area = card.querySelector('.area').textContent
-                let operadora = 595
-                let mensajeTecnico = prompt()
+        // let cardID =(event.target.dataset.id)
+        let card = event.target.closest('.card')
+        let ticket = card.querySelector('.ticket').textContent
+        let solicitud = card.querySelector('.solicitud').textContent
+        let descripcion = card.querySelector('.descripcion').textContent
+        let nombre = card.querySelector('.nombre').textContent
+        let telefono = card.querySelector('.telefono').textContent
+        let area = card.querySelector('.area').textContent
+        let operadora = 595
+        let mensajeTecnico = prompt()
 
-                let mensaje = ` 
+        let mensaje = ` 
 *ASISTENCIA TECNICA FINALIZADA*✅
 
 *Generado el dia* : ${ticket}  
 
-
-
 *Respuesta del Tecnico* : ${mensajeTecnico}
+
+
 
         `;
 
-        asistenciaTermianda(ticket,solicitud,area,nombre,descripcion)
+        asistenciaTermianda(ticket, solicitud, area, nombre, descripcion)
 
         var chat = {
           secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
           account: "17047957986c8349cc7260ae62e3b1396831a8398f659d1e96b6d04",
-          recipient:operadora+telefono,
+          recipient: operadora + telefono,
           type: "text",
           message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
-        }; 
+        };
 
         $.ajax({
           type: "POST",
@@ -95,19 +96,69 @@ import {
           success: function (response) {
             // Maneja la respuesta del servidor aquí (puede requerir validación)
             console.log(response);
-            
+
           },
           error: function (xhr, textStatus, errorThrown) {
             // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
             console.error("Error en la solicitud: " + textStatus, errorThrown);
           },
         });
-            
 
-                
-                // Llamar a la función deletTask con el ID de la tarea asociado al botón
-                borrarAsistencia(event.target.dataset.id);
-            });
+
+
+        // Llamar a la función deletTask con el ID de la tarea asociado al botón
+        borrarAsistencia(event.target.dataset.id);
+      });
+    });
+
+
+    // APARTADO RESPONDER MENSAJE
+    const btnMensaje = card.querySelectorAll(".whatsapp");
+    btnMensaje.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+
+        // let cardID =(event.target.dataset.id)
+        let card = event.target.closest('.card')
+        let ticket = card.querySelector('.ticket').textContent
+        let telefono = card.querySelector('.telefono').textContent
+        let operadora = 595
+        let mensajeTecnico = prompt()
+
+        let mensaje = ` 
+*RESPUESTA DEL TECNICO*✅
+${mensajeTecnico}
+
+*Generado el dia* : ${ticket}  
+
+
+
+
+
+      `;
+
+        var chat = {
+          secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
+          account: "17047957986c8349cc7260ae62e3b1396831a8398f659d1e96b6d04",
+          recipient: operadora + telefono,
+          type: "text",
+          message: mensaje, // Aquí debes proporcionar el mensaje que deseas enviar
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "https://whats-flow.com/api/send/whatsapp",
+          data: chat,
+          success: function (response) {
+            // Maneja la respuesta del servidor aquí (puede requerir validación)
+            console.log(response);
+
+          },
+          error: function (xhr, textStatus, errorThrown) {
+            // Maneja los errores de manera adecuada, muestra mensajes al usuario si es necesario
+            console.error("Error en la solicitud: " + textStatus, errorThrown);
+          },
         });
-    })
+      });
+    });
   })
+})
