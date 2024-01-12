@@ -39,8 +39,8 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <p class="text-muted mb-0 area">${asistencia.area}</p>
                         </div>
                     </div>
-                    <button class="btn btn-success" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
                     <button class="whatsapp btn btn-warning" type="button" style="width: 100%;margin-top: 20px;">Responder Ticket Mensaje</button>
+                    <button class="btn btn-success" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
                 </div>
             </div>
         </div>
