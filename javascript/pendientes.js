@@ -65,16 +65,17 @@ import {
                 let telefono = card.querySelector('.telefono').textContent
                 let area = card.querySelector('.area').textContent
                 let operadora = 595
+                let mensajeTecnico = prompt()
 
                 let mensaje = ` 
 *ASISTENCIA TECNICA FINALIZADA*✅
 
-*Nombre* : ${nombre}
-*Motivo* : ${solicitud}
-*Despcripcion del problema* : ${descripcion}
-*Area* : ${area}
-
 *Generado el dia* : ${ticket}  
+
+
+
+*Respuesta del Tecnico* : ${mensajeTecnico}
+
         `;
 
         asistenciaTermianda(ticket,solicitud,area,nombre,descripcion)
