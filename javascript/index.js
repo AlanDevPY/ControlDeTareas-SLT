@@ -146,7 +146,7 @@ btnRegistrar.addEventListener("click", (e) => {
 
 *${nombre}* Su ticket de asistencia fue generado
 *Motivo* : ${solicitud}
-*Despcripcion del problema* : ${descripcion}
+*Despcripcion* : ${descripcion}
 *Area* : ${area}
         `;
 
