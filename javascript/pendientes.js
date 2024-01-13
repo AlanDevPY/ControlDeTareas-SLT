@@ -41,6 +41,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <button class="whatsapp btn btn-warning" type="button" style="width: 100%;margin-top: 20px;">Responder Ticket</button>
                     <button class="btn btn-success" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Terminado</button>
+                    <button class="btn btn-danger eliminar" data-id="${asistencia.id}" type="button" style="width: 100%;margin-top: 20px;">Eliminar Asistencia</button>
                 </div>
             </div>
         </div>
@@ -158,6 +159,14 @@ ${mensajeTecnico}
             console.error("Error en la solicitud: " + textStatus, errorThrown);
           },
         });
+      });
+    });
+
+    const btnEliminar = card.querySelectorAll(".eliminar");
+    btnEliminar.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        borrarAsistencia(event.target.dataset.id);
+
       });
     });
   })
