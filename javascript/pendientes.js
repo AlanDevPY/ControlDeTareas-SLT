@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         asistenciaTermianda(ticket, solicitud, area, nombre, descripcion)
 
         var chat = {
-          secret: "fc86a086e03f9260d2504bc3ee437864e82e183a",
+          secret: "e513c41e6b43f77bc144d81ba7c39db3914a7c59",
           account: "1705662305e4da3b7fbbce2345d7772b0674a318d565aa576122301",
           recipient: operadora + telefono,
           type: "text",
