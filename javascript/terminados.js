@@ -17,7 +17,7 @@ asistenciasTerminadoBD
             asistencias.push({...asistencia, id: doc.id});
         });
         
-        asistencias.sort((a, b) => a.ticket.localeCompare(b.ticket));
+        asistencias.sort((a, b) => a.nombre.localeCompare(b.nombre));
         let contador = 1
         
         asistencias.forEach((asistencia) =>{
