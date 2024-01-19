@@ -37,6 +37,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                             <p class="fw-bold mb-0 nombre">${asistencia.nombre}</p>
                             <p class="text-muted mb-0 telefono">${asistencia.telefono}</p>
                             <p class="text-muted mb-0 area">${asistencia.area}</p>
+                            <p class="text-muted mb-0 area"> Generado por : ${asistencia.remitente}</p>
                         </div>
                     </div>
                     <button class="whatsapp btn btn-warning" type="button" style="width: 100%;margin-top: 20px;">Responder Ticket</button>

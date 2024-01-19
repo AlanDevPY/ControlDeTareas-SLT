@@ -135,9 +135,9 @@ btnRegistrar.addEventListener("click", (e) => {
             }
           }).showToast();
 
-
+          let remitente = prompt("Ingrese su Nombre")
           
-        registrarAsistencia(ticket,solicitud, area, nombre, telefono,descripcion)
+        registrarAsistencia(ticket,solicitud, area, nombre, telefono,descripcion,remitente)
         // alert.innerHTML = ` <div class="alert alert-success text-center" role="alert">Asistencia registrada</div>`
 
         let mensaje = ` 

@@ -20,7 +20,7 @@
 //   const analytics = getAnalytics(app);
 const db = getFirestore();
 
-export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, descripcion) => {
+export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, descripcion,remitente) => {
   try {
 
     const options = {
@@ -43,7 +43,8 @@ export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, de
       telefono,
       descripcion,
       fecha,
-      ticket
+      ticket,
+      remitente
     });
 
     console.log("Asistencia Registrada");
