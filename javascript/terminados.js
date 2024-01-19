@@ -5,12 +5,11 @@ asistenciasTerminadoBD
   window.addEventListener('DOMContentLoaded', async () => {
     
     let tBody = document.getElementById('tBody')
-    let contador = 1
-
+    
     asistenciasTerminadoBD((querySnapshot) => {
         let tr = ''
         let asistencias = []
-
+        
         console.log(asistencias);
         
         querySnapshot.forEach((doc) => {
@@ -19,7 +18,8 @@ asistenciasTerminadoBD
         });
         
         asistencias.sort((a, b) => a.ticket.localeCompare(b.ticket));
-
+        let contador = 1
+        
         asistencias.forEach((asistencia) =>{
             tr +=`
             <tr>
