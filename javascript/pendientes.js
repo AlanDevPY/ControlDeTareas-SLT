@@ -121,16 +121,19 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         // let cardID =(event.target.dataset.id)
         let card = event.target.closest('.card')
+        let solicitud = card.querySelector('.solicitud').textContent
         let ticket = card.querySelector('.ticket').textContent
         let telefono = card.querySelector('.telefono').textContent
         let operadora = 595
         let mensajeTecnico = prompt()
 
         let mensaje = ` 
-*RESPUESTA DEL TECNICO*✅
-${mensajeTecnico}
+*RESPUESTA AUTOMATICA*✅ 
 
-*Generado el dia* : ${ticket}  
+*SOLICITUD* : ${solicitud}
+*GENERADO EL DIA* : ${ticket}  
+
+*RESPUESTA* : ${mensajeTecnico}
 
 
 
