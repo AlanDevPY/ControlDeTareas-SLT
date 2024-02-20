@@ -1,7 +1,7 @@
 
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, getDocs, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, getDoc, doc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -51,6 +51,23 @@ export const registrarAsistencia = (ticket,solicitud, area, nombre, telefono, de
   }
   catch {
     console.error('Error al registrar asistencia', error)
+  }
+}
+
+export async function obtenerDocumento(nombreColeccion, idDocumento) {
+  try {
+      const docRef = doc(db, nombreColeccion, idDocumento);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+          return docSnap.data();
+      } else {
+          console.log('No se encontró el documento');
+          return null;
+      }
+  } catch (error) {
+      console.error('Error al obtener el documento:', error);
+      return null;
   }
 }
 

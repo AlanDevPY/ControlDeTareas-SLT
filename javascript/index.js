@@ -1,7 +1,8 @@
 import {
     registrarAsistencia,
     areaDB,
-    clientesDB
+    clientesDB,
+    obtenerDocumento
   } from "./firebase.js";
 
 
@@ -20,6 +21,7 @@ let operadora = 595
 
 
 window.addEventListener('DOMContentLoaded', async () => {
+
     
   let inputSelectArea = document.getElementById('inputSelectArea')
 
@@ -44,6 +46,16 @@ window.addEventListener('DOMContentLoaded', async () => {
       inputSelectArea.innerHTML = option;
   })
 })
+
+async function mostrarDocumento() {
+  const datosDocumento = await obtenerDocumento('asistenciaterminada', '0tW2zd6SkMO746MWnWj9');
+  if (datosDocumento) {
+    let datos = datosDocumento.descripcion 
+    console.log(datos)
+  }
+}
+
+mostrarDocumento();
 
 
 window.addEventListener('DOMContentLoaded', async () => {
