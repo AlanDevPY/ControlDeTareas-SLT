@@ -5,7 +5,7 @@ import {
     registrarDelivery, deliveryDB, borarDelivery,
     obtenerClientePorId,
     actualizarDato
-} from "./firebase.js";
+} from "./firebaseAdmin.js";
 
 let editEstatus = false
 let id = '';
@@ -36,10 +36,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             datos += `
             <tr>
             <th>${contador++}</th>
-            <td>${cliente.nombre} ${cliente.apellido}</td>
+            <td>${cliente.nombre}</td>
             <td>${cliente.telefono}</td>
-            <td>${cliente.direccion}</td>
-            <td>${cliente.referencia}</td>
              <td>
              <button data-id="${cliente.id}" class="btn btn-warning btn-sm">Editar</button>
              <button data-id="${cliente.id}" class="btn btn-danger btn-sm">Eliminar</button>

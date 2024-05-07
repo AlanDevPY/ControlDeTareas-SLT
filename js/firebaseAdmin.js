@@ -5,14 +5,14 @@ import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDoc, u
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC8CbSZ-KyANrRjhnQsn7q8-EvbXyNpWik",
-  authDomain: "curcuma-fcec3.firebaseapp.com",
-  projectId: "curcuma-fcec3",
-  storageBucket: "curcuma-fcec3.appspot.com",
-  messagingSenderId: "1004966811886",
-  appId: "1:1004966811886:web:aa92a7d663e312260ebbff",
-  measurementId: "G-QYWFWL6VT4"
-};
+    apiKey: "AIzaSyAE3gYKTLHY2DKYr9O7tlqHuRMwgr4ksAI",
+    authDomain: "controldetareas---latrinidad.firebaseapp.com",
+    projectId: "controldetareas---latrinidad",
+    storageBucket: "controldetareas---latrinidad.appspot.com",
+    messagingSenderId: "306822255768",
+    appId: "1:306822255768:web:18005c270dca0c888caced",
+    measurementId: "G-6637YCDJ7S"
+  };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
@@ -32,7 +32,7 @@ const db = getFirestore(app); // Recommended to pass `app`
 }
 
 
-  export const clientesDB = (callback) => onSnapshot(collection(db,'clientes'),callback) //mostrar clientes
+  export const clientesDB = (callback) => onSnapshot(collection(db,'cliente'),callback) //mostrar clientes
   export const borrarCliente = (id) => deleteDoc(doc(db,'clientes',id)); // eliminar cliente cargados
 
 // apartado registrar menu

@@ -1,78 +1,67 @@
 
-import { clientesDB, areaDB, deliveryDB, registrarPedido, obtenerClientePorId, pedidosDB, borrarPedido, obtenerPedidosPorID } from "./firebase.js";
+import { clientesDB, areaDB, deliveryDB, registrarAsistencias, obtenerClientePorId, pedidosDB, borrarPedido, obtenerPedidosPorID } from "./firebase.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
 
     //Mostar pedidos registrados
-    pedidosDB((querySnapshot) => {
+        // MOSTRAR ESTUDIOS REGISTRADOS
+        pedidosDB((querySnapshot) => {
         let tBody = document.getElementById('tBody')
-        let datos = ''
-        let pedidos = []
+        let options = ''
+        let datos = []
 
         querySnapshot.forEach((doc) => {
-            let pedido = doc.data()
-            pedidos.push({ ...pedido, id: doc.id });
-        });
+            let dato = doc.data()
+            datos.push({ ...dato, id: doc.id })
+        })
+
+
 
         let contador = 1
 
-
-
-        pedidos.sort((b, a) => {
-            return new Date(a.fecha) - new Date(b.fecha);
+        datos.sort((b, a) => {
+            const fechaA = convertirAFecha(a.fecha);
+            const fechaB = convertirAFecha(b.fecha);
+            return fechaB - fechaA;
         });
 
-        const hoy = new Date();
-        const año = hoy.getFullYear();
-        let mes = hoy.getMonth() + 1; // Sumamos 1 porque los meses van de 0 a 11
-        let dia = hoy.getDate();
+        function convertirAFecha(fecha) {
+            const partesFechaHora = fecha.split(', ');
+            const partesFecha = partesFechaHora[0].split('/');
+            const partesHora = partesFechaHora[1].split(':');
 
-        // Formateamos el día y mes con dos dígitos si son menores a 10
-        if (mes < 10) {
-            mes = '0' + mes;
+            const dia = partesFecha[0];
+            const mes = partesFecha[1];
+            const año = partesFecha[2];
+            const hora = partesHora[0];
+            const minuto = partesHora[1];
+            const segundo = partesHora[2];
+
+            return new Date(año, mes - 1, dia, hora, minuto, segundo);
         }
-        if (dia < 10) {
-            dia = '0' + dia;
-        }
 
-        const fechaHoy = `${dia}-${mes}-${año}`;
-        console.log(fechaHoy);
-        const pedidosFiltrados = pedidos.filter(pedido => {
-            // Convertimos la fecha del pedido al formato "DD-MM-YYYY"
-            const fechaPedidoParts = pedido.fecha.split('/');
-            const fechaPedido = `${fechaPedidoParts[0].padStart(2, '0')}-${fechaPedidoParts[1].padStart(2, '0')}-${fechaPedidoParts[2]}`;
-            // console.log(`Comparando fechaPedido: ${fechaPedido} con fechaHoy: ${fechaHoy}`);
-            return fechaPedido === fechaHoy;
-        });
-        
-        console.log("Pedidos filtrados:", pedidosFiltrados);
-        
-        
-        
-        
-
-        
+        // datos.forEach((dato) =>{
+        //     console.log(dato.fechaRegistro);
+        // })
 
 
-        pedidosFiltrados.forEach((pedido) => {
-            datos += `  
+        datos.forEach((dato) => {
+            options += `  
             <tr>
             <th>${contador++}</th>
-            <th>${pedido.fecha}</th>
-            <td>${pedido.cliente}</td>
-            <td>${pedido.pedido}</td>
-            <td>${pedido.menuCantidad}</td>
-            <td>${pedido.delivery}</td>
-            <td>${pedido.total}</td>
+            <th>${dato.fecha}</th>
+            <th>${dato.solicitud}</th>
+            <td>${dato.area}</td>
+            <td>${dato.cliente}</td>
             <td>
-            <button type="button" data-id="${pedido.id}" class="btn btn-outline-success print ">Imprimir</button>
-                <button type="button" data-id="${pedido.id}" class="btn btn-outline-danger delete ">Eliminar</button>
+            <button type="button" data-id="${dato.id}" class="btn btn-outline-success print ">Terminado</button>
+                <button type="button" data-id="${dato.id}" class="btn btn-outline-danger delete ">Eliminar</button>
             </td>
           </tr>
             
                 `
         })
-        tBody.innerHTML = datos;
+        tBody.innerHTML = options;
 
         const btnDelet = tBody.querySelectorAll(".delete");
 
@@ -147,26 +136,10 @@ window.addEventListener('DOMContentLoaded', async () => {
             })
             selectMenu.innerHTML = datos;
         })
-
-        // mostrar delivery
-        deliveryDB((querySnapshot) => {
-            let datos = ''
-            let deliverys = []
-
-            querySnapshot.forEach((doc) => {
-                let delivery = doc.data()
-                deliverys.push({ ...delivery, id: doc.id });
-            });
-
-
-            deliverys.forEach((delviery) => {
-                datos += `
-                <option data-nombre="${delviery.delivery}" value="${delviery.delivery}">${delviery.delivery}</option>
-                `
-            })
-            selectDelivery.innerHTML = datos;
-        })
     })
+
+
+
 
     // FUNCION PARA REGISTRAR PEDIDO Y GENERAR TICKET
     let btnRegistrarPedido = document.getElementById('btnRegistrarPedido')
@@ -182,69 +155,26 @@ window.addEventListener('DOMContentLoaded', async () => {
         opciones.forEach(opcion => {
             if (opcion.value === valorCliente) {
                 dataIdEncontrado = opcion.getAttribute('data-id');
-                // console.log(dataIdEncontrado);
+                console.log(dataIdEncontrado);
             }
         });
 
 
         //obtenemos los datos del cliente
         let datoCliente = await obtenerClientePorId(dataIdEncontrado)
-        let ClienteNombre = datoCliente.data().nombre
+        let cliente = datoCliente.data().nombre
         let telefono = datoCliente.data().telefono
-        let direccion = datoCliente.data().direccion
-        let ClienteApellido = datoCliente.data().apellido
-        let cliente = `${ClienteNombre} ${ClienteApellido}` // unimos nombr y apellido del cliente
-        let delivery = document.getElementById('selectDelivery').value // Obtenemos el nombre del Delivery
-        let pedido = parseFloat(document.getElementById('selectMenu').value); // Obtenemos el costo del menú como número
-        let menuCosto = parseFloat(document.getElementById('selectMenu').value); // Obtenemos el costo del menú como número
-        let cobrarDelivery = parseFloat(document.getElementById('cobrarDelivery').value); // Obtenemos el costo del Delivery como número
-        let menuCantidad = document.getElementById('inputMenuCantidad').value
-        let costoTotal = null
-        // Verificamos si ambos valores son números válidos
-        if (!isNaN(pedido) && !isNaN(cobrarDelivery)) {
-            costoTotal = (pedido * menuCantidad) + cobrarDelivery;
 
-            console.log('El costo total a cobrar es: ' + costoTotal);
-        } else {
-            // console.log('Uno o ambos valores no son números válidos.');
-        }
+        let area = document.getElementById('selectMenu').value
+        let solicitud = document.getElementById('inputSolicitud').value
 
-
-        //forma de acceder el texto de un select
-        let selectElement = document.getElementById('selectMenu');
-        let selectedIndex = selectElement.selectedIndex;
-        let selectedOption = selectElement.options[selectedIndex];
-        let pedidoTexto = selectedOption.text;
-        
-
-
-
-        // console.log(cliente);
-        // console.log(pedidoTexto);
-        // console.log(delivery);
-        // console.log(costoTotal);
-
-
-
-        registrarPedido(cliente, telefono, direccion, menuCosto, pedidoTexto, menuCantidad, delivery, costoTotal)
-
+        console.log(cliente, telefono, area, solicitud);
+        registrarAsistencias(cliente, telefono, area, solicitud);
 
         let modalElement = document.getElementById('modalTicket');
         let modal = bootstrap.Modal.getInstance(modalElement);
         modal.hide();
 
-
-        setTimeout(() => {
-            window.print()
-        }, 1000)
-        document.getElementById('ticketCliente').textContent = cliente
-        document.getElementById('ticketTelefono').textContent = datoCliente.data().telefono
-        document.getElementById('ticketDireccion').textContent = datoCliente.data().direccion
-        document.getElementById('ticketMenu').textContent = pedidoTexto
-        document.getElementById('ticketMenuCantidad').textContent = menuCantidad
-        document.getElementById('ticketCostoMenu').textContent = pedido
-        document.getElementById('ticketTotal').textContent = costoTotal;
-        document.getElementById('ticketDelivery').textContent = delivery;
     })
 
 

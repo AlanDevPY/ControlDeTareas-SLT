@@ -21,39 +21,40 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app); // Recommended to pass `app`
 
 //----------------------------------------------------------------------------------------------------------------//
-export const pedidosDB = (callback) => onSnapshot(collection(db, 'pedidos'), callback) //mostrar clientes
-export const borrarPedido = (id) => deleteDoc(doc(db,'pedidos',id)); // eliminar pedidos cargados
+export const pedidosDB = (callback) => onSnapshot(collection(db, 'asistencias'), callback) //mostrar clientes
+export const borrarPedido = (id) => deleteDoc(doc(db,'asistencias',id)); // eliminar pedidos cargados
 //-----------------------------------------------------------------------------------------------------------------//
 
 export const clientesDB = (callback) => onSnapshot(collection(db, 'cliente'), callback) //mostrar clientes
 export const areaDB = (callback) => onSnapshot(collection(db,'area'),callback) //mostrar Menus
 export const deliveryDB = (callback) => onSnapshot(collection(db,'delivery'),callback) //mostrar Delivery
-export const obtenerClientePorId = (id) => getDoc(doc(db,'clientes', id)) // obtener datas del cliente por ID
+export const obtenerClientePorId = (id) => getDoc(doc(db,'cliente', id)) // obtener datas del cliente por ID
 export const obtenerPedidosPorID = (id) => getDoc(doc(db,'pedidos', id)) // obtener datas del cliente por ID
 
 
   // apartado registrar Delivery
 // REGISTRAR ESTUDIO
-export const registrarPedido = (cliente,telefono,direccion,menuCosto, pedido, menuCantidad, delivery, total) => {
+export const registrarAsistencias = (cliente,telefono,area, solicitud) => {
     try {
   
       const options = {
         year: "numeric",
         month: "numeric",
         day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false, // Usar formato de 24 horas
       };
 
       let fecha = new Date().toLocaleString("es-ES", options);
-      addDoc(collection(db, "pedidos"), {
+      addDoc(collection(db, "asistencias"), {
         fecha: fecha,
         cliente: cliente,
-        pedido: pedido,
-        menuCantidad : menuCantidad,
-        menuCosto: menuCosto,
         telefono: telefono,
-        direccion: direccion,
-        delivery: delivery,
-        total: total
+        area: area,
+        solicitud: solicitud
+        
       });
       console.log("Pedido Registrado");
     }
