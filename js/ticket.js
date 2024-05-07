@@ -1,5 +1,5 @@
 
-import { clientesDB, menuDB, deliveryDB, registrarPedido, obtenerClientePorId, pedidosDB, borrarPedido, obtenerPedidosPorID } from "./firebase.js";
+import { clientesDB, areaDB, deliveryDB, registrarPedido, obtenerClientePorId, pedidosDB, borrarPedido, obtenerPedidosPorID } from "./firebase.js";
 
 window.addEventListener('DOMContentLoaded', async () => {
 
@@ -123,14 +123,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             clientes.forEach((cliente) => {
                 datos += `
-            <option value="${cliente.nombre} ${cliente.apellido}" data-id="${cliente.id}">
+            <option value="${cliente.nombre} ${cliente.telefono}" data-id="${cliente.id}">
             `
             })
             tBodyCliente.innerHTML = datos;
         })
 
         // mostrar menus
-        menuDB((querySnapshot) => {
+        areaDB((querySnapshot) => {
             let datos = ''
             let menus = []
 
@@ -142,7 +142,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
             menus.forEach((menu) => {
                 datos += `
-            <option data-nombre="${menu.menu}" value="${menu.costo}">${menu.menu}</option>
+            <option value="${menu.area}">${menu.area}</option>
             `
             })
             selectMenu.innerHTML = datos;

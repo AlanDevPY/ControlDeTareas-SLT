@@ -14,9 +14,9 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg bg-warning noPrint">
+    <nav class="navbar navbar-expand-lg bg-info noPrint">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">CURCUMA SYSTEM</a>
+            <a class="navbar-brand" href="#">ASISTENCIA TECNICA SLT</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalTicket"
-                                    type="button">GENERA DELIVERY</button></li>
+                                    type="button">GENERAR ASISTENCIA</button></li>
                             <!-- <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCliente" type="button">REGISTRAR CLIENTE</button></li> -->
                             <li>
                                 <hr class="dropdown-divider">
@@ -45,7 +45,7 @@
         </div>
     </nav>
 
-    <div class="container noPrint">
+    <!-- <div class="container noPrint">
         <div class="row mt-1">
             <div class="col-12">
                 <button type="button" class="btn btn-warning">Tradicional: <span id="contadorTradicional"></span></button>
@@ -54,9 +54,9 @@
                 <button type="button" class="btn btn-warning">Especial: <span id="contadorEspecial"></span></button>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="container noPrint">
+    <div class="container-fluid noPrint">
         <div class="row mt-2">
         </div>
         <div class="row">
@@ -65,11 +65,10 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Cliente</th>
-                        <th scope="col">Pedido</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Delivery</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">Solicitud</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Solcitado por</th>
+                        <th scope="col">obs</th>
                         <th scope="col">Accion</th>
                     </tr>
                 </thead>
@@ -84,7 +83,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Delivery</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar Asistencia Tecnica</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -95,29 +94,17 @@
                         <datalist id="datalistOptions">
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text"></span>
+                        <span class="input-group-text">Area</span>
                         <select class="form-select" id="selectMenu" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select>
-                        <span class="input-group-text"></span>
-                        <input type="number" class="form-control" id="inputMenuCantidad" placeholder="1">
-                        <span class="input-group-text"></span>
-                        <select class="form-select" id="selectDelivery" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <span class="input-group-text"></span>
-                        <select class="form-select" id="cobrarDelivery" aria-label="Default select example">
-                            <option selected disabled>Cobrar Delivery</option>
-                            <option value="0">No</option>
-                            <option value="5000">5000</option>
-                            <option value="7000">7000</option>
-                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Solicitud</span>
+                        <input type="text" class="form-control" id="inputMenu">
                     </div>
                 </div>
                 <div class="modal-footer">

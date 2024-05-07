@@ -7,13 +7,13 @@ import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, getDoc, u
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyC8CbSZ-KyANrRjhnQsn7q8-EvbXyNpWik",
-    authDomain: "curcuma-fcec3.firebaseapp.com",
-    projectId: "curcuma-fcec3",
-    storageBucket: "curcuma-fcec3.appspot.com",
-    messagingSenderId: "1004966811886",
-    appId: "1:1004966811886:web:aa92a7d663e312260ebbff",
-    measurementId: "G-QYWFWL6VT4"
+  apiKey: "AIzaSyAE3gYKTLHY2DKYr9O7tlqHuRMwgr4ksAI",
+  authDomain: "controldetareas---latrinidad.firebaseapp.com",
+  projectId: "controldetareas---latrinidad",
+  storageBucket: "controldetareas---latrinidad.appspot.com",
+  messagingSenderId: "306822255768",
+  appId: "1:306822255768:web:18005c270dca0c888caced",
+  measurementId: "G-6637YCDJ7S"
 };
 
 // Initialize Firebase
@@ -25,8 +25,8 @@ export const pedidosDB = (callback) => onSnapshot(collection(db, 'pedidos'), cal
 export const borrarPedido = (id) => deleteDoc(doc(db,'pedidos',id)); // eliminar pedidos cargados
 //-----------------------------------------------------------------------------------------------------------------//
 
-export const clientesDB = (callback) => onSnapshot(collection(db, 'clientes'), callback) //mostrar clientes
-export const menuDB = (callback) => onSnapshot(collection(db,'menu'),callback) //mostrar Menus
+export const clientesDB = (callback) => onSnapshot(collection(db, 'cliente'), callback) //mostrar clientes
+export const areaDB = (callback) => onSnapshot(collection(db,'area'),callback) //mostrar Menus
 export const deliveryDB = (callback) => onSnapshot(collection(db,'delivery'),callback) //mostrar Delivery
 export const obtenerClientePorId = (id) => getDoc(doc(db,'clientes', id)) // obtener datas del cliente por ID
 export const obtenerPedidosPorID = (id) => getDoc(doc(db,'pedidos', id)) // obtener datas del cliente por ID
