@@ -54,8 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             <td>${dato.area}</td>
             <td>${dato.cliente}</td>
             <td>
-            <button type="button" data-id="${dato.id}" class="btn btn-outline-success print ">Terminado</button>
-                <button type="button" data-id="${dato.id}" class="btn btn-outline-danger delete ">Eliminar</button>
+                <button type="button" data-id="${dato.id}" class="btn btn-outline-success delete ">Terminado</button>
             </td>
           </tr>
             
