@@ -1,0 +1,15 @@
+.impresionTicket {
+    display: none;
+}
+
+
+@media print {
+    .noPrint {
+        display: none;
+    }
+    .impresionTicket {
+        display: block;
+    }
+}
+
+
