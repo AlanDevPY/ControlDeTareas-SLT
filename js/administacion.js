@@ -5,7 +5,7 @@ import {
     registrarDelivery, deliveryDB, borarDelivery,
     obtenerClientePorId,
     actualizarDato
-} from "./firebaseAdmin.js";
+} from "./firebase.js";
 
 let editEstatus = false
 let id = '';
